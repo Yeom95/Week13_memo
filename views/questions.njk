@@ -1,34 +1,12 @@
-<div class="col-md-8">
-  <div class="question-card card">
-    <div class="card-body">
-      <h5 class="card-title">Publishing my work without advisor</h5>
-      <div class="question-meta">
-        <span>0 Answers</span> • <span>0 Votes</span> • <span>0 Views</span> • <span>Asked 23m ago</span>
-      </div>
+<!-- {% extends "post_list.njk" %} -->
+<div class="list-container">
+  {% for item in questions %}
+    <div class="list-item">
+      <h5>{{ item.title or item.name }}</h5>
+      <p>{{ item.description or item.points }} {{ item.meta or '' }}</p>
     </div>
-  </div>
-  <div class="question-card card">
-    <div class="card-body">
-      <h5 class="card-title">Choosing your research area</h5>
-      <div class="question-meta">
-        <span>5 Answers</span> • <span>12 Votes</span> • <span>727 Views</span> • <span>Asked 2h ago</span>
-      </div>
-    </div>
-  </div>
-  <div class="question-card card">
-    <div class="card-body">
-      <h5 class="card-title">Is independent research a good long term goal for a bachelor’s degree?</h5>
-      <div class="question-meta">
-        <span>2 Answers</span> • <span>7 Votes</span> • <span>438 Views</span> • <span>Asked 3h ago</span>
-      </div>
-    </div>
-  </div>
-  <div class="question-card card">
-    <div class="card-body">
-      <h5 class="card-title">How may I calculate Research Contribution as Per UGC rules?</h5>
-      <div class="question-meta">
-        <span>0 Answers</span> • <span>12 Votes</span> • <span>727 Views</span> • <span>Asked 8h ago</span>
-      </div>
-    </div>
-  </div>
+  {% endfor %}
 </div>
+<!--{% block items %}
+  {% set items = questions %}
+{% endblock %}-->
