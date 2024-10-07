@@ -4,19 +4,34 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="#">Latest</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Unanswered</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Trending</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Popular This Week</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Popular This Month</a></li>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav"> 
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Post</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Current users</a></li>
       </ul>
       <form class="d-flex search-bar">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form>
-      <a href="#" class="btn btn-outline-light me-2">Register</a>
-      <a href="#" class="btn btn-outline-light">Login</a>
+      <a href="/login.html" class="btn btn-outline-light">Login</a>
     </div>
   </div>
 </nav>
+
+<script>
+  // 모든 nav-link 요소들을 선택
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // 각 nav-link 요소에 이벤트 리스너를 추가
+  navLinks.forEach(link => {
+    link.addEventListener('mouseover', () => {
+      // 마우스를 올리면 active 클래스를 추가
+      link.classList.add('active');
+    });
+
+    link.addEventListener('mouseout', () => {
+      // 마우스가 벗어나면 active 클래스를 제거
+      link.classList.remove('active');
+    });
+  });
+</script>
