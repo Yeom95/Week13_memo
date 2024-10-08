@@ -2,7 +2,7 @@ body {
     background-color: #f8f9fa;
   }
   .navbar-custom {
-    background: linear-gradient(to right, #00b4db, #0083b0); /* 그라데이션 배경 */
+    background: linear-gradient(to right, #75C1F0, #0d6efd); /* 그라데이션 배경 */
     color: white;
   }
   .navbar-custom .nav-link {
@@ -31,4 +31,32 @@ body {
   }
   .btn-outline-light:hover {
     background-color: rgba(255, 255, 255, 0.2); /* 버튼 hover 효과 */
+  }
+
+  .question-card {
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .question-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .question-meta {
+    font-size: 0.875rem;
+    color: #777;
+  }
+
+  /*nav.html 부분*/
+  #loginModal .modal-dialog {
+    max-width: 400px; /* 원하는 크기로 설정 */
+    margin: 1.75rem auto; /* 중앙 정렬 */
+  }
+  
+  #loginModal .modal-content {
+    padding: 20px; /* 내용물 여백 */
+    border-radius: 10px; /* 모서리 둥글게 */
   }

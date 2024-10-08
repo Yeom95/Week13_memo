@@ -24,7 +24,43 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
             <div class="text-center mt-3">
-                <a href="#" class="text-primary">Sign Up</a>
+                <a href="#" class="text-primary" id = "signupBtn">Sign Up</a>
+
+                <!--Login Modal Structure-->
+                <div class = "modal fade" id = "signupModal" tabindex = "-1" aria-labelledby = "signupModalLabel" aria-hidden = "true">
+                    <div class = "modal-dialog">
+                        <div class = "modal-content">
+                            <div class = "modal-body">
+                                <!-- Modal Body-->
+                                <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    // signupButton 버튼 선택
+                                    const signupButton = document.getElementById('signupBtn');
+                                    console.log(signupButton);
+
+                                    // signupButton 클릭 이벤트 리스너 추가
+                                    signupButton.addEventListener('click', function (event) {
+                                    event.preventDefault(); // 기본 동작 방지
+
+                                    // sign_up.html의 내용을 가져와 모달에 로드
+                                    fetch('/sign_up.html')
+                                        .then(response => response.text())
+                                        .then(html => {
+                                        // 모달의 본문에 login.html 삽입
+                                        document.querySelector('#signupModal .modal-body').innerHTML = html;
+
+                                        // 모달을 화면에 띄움
+                                        new bootstrap.Modal(document.getElementById('signupModal')).show();
+                                        })
+                                        .catch(err => console.warn('Failed to load login page:', err));
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Modal Body-->
             </div>
             <div class="forgot-password mt-3">
                 <a href="#" class="text-muted">forgot password?</a>
