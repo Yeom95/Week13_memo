@@ -15,28 +15,16 @@
         <h2 class="text-center mb-4">Login</h2>
         <form method = "POST" action = "/login">
             <div class="mb-3">
-                <label for="username" class="form-label">Email address</label>
-                <input type="text" class="form-control" id="username" placeholder="username" name="username" required>
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username-login" placeholder="username" name="username" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="password" name="password" required>
+                <input type="password" class="form-control" id="password-login" placeholder="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
             <div class="text-center mt-3">
-                <a href="#" class="text-primary" id = "signupBtn" onclick="openSignupModal()">Sign Up</a>
-
-                <!--Signup Modal Structure-->
-                <div class = "modal fade" id = "signupModal" tabindex = "-1" aria-labelledby = "signupModalLabel" aria-hidden = "true">
-                    <div class = "modal-dialog">
-                        <div class = "modal-content">
-                            <div class = "modal-body">
-                                <!-- Modal Body-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--End of Modal Body-->
+                <a href="#" class="text-primary" id = "signupBtn">Sign Up</a>
             </div>
             <div class="forgot-password mt-3">
                 <a href="#" class="text-muted">forgot password?</a>
@@ -48,24 +36,5 @@
     <!-- 외부 스크립트 파일 로드 -->
     <!--<script src="/js/load_content.js"></script>
     <script src="/js/sign_up.js"></script>-->
-
-    <script>
-        function openSignupModal() {
-            // 기본 동작 방지
-            event.preventDefault();
-    
-            // sign_up.html의 내용을 가져와 모달에 로드
-            fetch('/sign_up.html')
-                .then(response => response.text())
-                .then(html => {
-                    // 모달의 본문에 login.html 삽입
-                    document.querySelector('#signupModal .modal-body').innerHTML = html;
-    
-                    // 모달을 화면에 띄움
-                    new bootstrap.Modal(document.getElementById('signupModal')).show();
-                })
-                .catch(err => console.warn('Failed to load sign_up page:', err));
-        }
-    </script>
 </body>
 </html>
