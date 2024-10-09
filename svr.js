@@ -53,9 +53,45 @@ now = `${now.getUTCFullYear()}-${now.getMonth()+1}-${now.getDate()} ${now.getHou
 
 
 app.get('/', (req, res) => {
-    res.render('login');
-})
+    pool.getConnection((err, conn) => {
 
+        if (err) {
+            conn.release();
+            return
+        }
+
+        const exec = conn.query('select * from board',
+            (err, result) => {
+                conn.release();
+                console.log('실행된 SQL: ' + exec.sql)
+
+                if (err) {
+                    console.log('SQL 실행시 오류 발생')
+                    console.dir(err);
+
+                    res.writeHead('200', { 'Content-Type': 'text/html; charset=utf-8' })
+                    res.write('<h1>SQL query 실행 실패</h1>')
+                    res.end();
+                    return
+                }
+
+                if (result) {
+                    res.render('index', {questions: result});
+                }
+                else {
+                    console.log('Inserted 실패')
+
+                    res.writeHead('200', { 'Content-Type': 'text/html; charset=utf-8' })
+                    res.write('<h1>사용자 추가 실패</h1>')
+                    res.end();
+
+                }
+
+
+            }
+        )
+    })
+})
 app.get('/login', (req, res) => {
     res.render('login');
 })
@@ -150,50 +186,6 @@ app.get('/delete', (req, res) => {
 
 
 
-app.get('/index', (req, res) => {
-    pool.getConnection((err, conn) => {
-
-        if (err) {
-            conn.release();
-            return
-        }
-
-        const exec = conn.query('select * from board',
-            (err, result) => {
-                conn.release();
-                console.log('실행된 SQL: ' + exec.sql)
-
-                if (err) {
-                    console.log('SQL 실행시 오류 발생')
-                    console.dir(err);
-
-                    res.writeHead('200', { 'Content-Type': 'text/html; charset=utf-8' })
-                    res.write('<h1>SQL query 실행 실패</h1>')
-                    res.end();
-                    return
-                }
-
-                if (result) {
-                    res.render('index', {questions: result});
-                }
-                else {
-                    console.log('Inserted 실패')
-
-                    res.writeHead('200', { 'Content-Type': 'text/html; charset=utf-8' })
-                    res.write('<h1>사용자 추가 실패</h1>')
-                    res.end();
-
-                }
-
-
-            }
-        )
-    })
-})
-
-
-
-
 
 app.post('/process/register', (req, res) => {
 
@@ -247,7 +239,7 @@ app.post('/process/login', (req, res) => {
 
     console.log('/process/login 호출됨' + req);
 
-    const paramId = req.body.id;
+    const paramId = req.body.username;
     const paramPassword = req.body.password;
 
     console.log('로그인 요청' + paramId + ' ' + paramPassword);
@@ -281,7 +273,7 @@ app.post('/process/login', (req, res) => {
                     console.log('아이디 [%s], 패스워드가 일치하는 사용자 [%s] 찾음', paramId, rows[0].name);
                     console.log(rows[0])
                     req.session.member = rows[0]
-                    res.send("<script>alert('로그인 성공!'); location.href='/homepage';</script>");
+                    res.send("<script>alert('로그인 성공!'); location.href='/';</script>");
                     return
                 }
                 else {
@@ -303,12 +295,8 @@ app.get('/process/logout', (req, res) => {
 
 
 
-app.post('/process/adduser', (req, res) => {
-    console.log('/process/adduser 호출됨' + req)
-
-    const paramId = req.body.id;
-    const paramName = req.body.name;
-    const paramAge = req.body.age;
+app.post('/signup', (req, res) => {
+    const paramId = req.body.username;
     const paramPassword = req.body.password;
 
     pool.getConnection((err, conn) => {
@@ -324,26 +312,25 @@ app.post('/process/adduser', (req, res) => {
 
         console.log('데이터베이스 연결 끈 얻었음');
 
-        const exec = conn.query('insert into users (id, name, age, password) values (?, ? ,?, SHA2(?,256))',
-            [paramId, paramName, paramAge, paramPassword],
+        const exec = conn.query('insert into users (id, password) values (?, SHA2(?,256))',
+            [paramId, paramPassword],
             (err, result) => {
                 conn.release();
                 console.log('실행된 SQL: ' + exec.sql)
 
                 if (err) {
                     console.log('SQL 실행시 오류 발생')
-                    res.send("<script>alert('회원가입 실패. 다른 아이디를 이용하세요'); location.href='/adduser';</script>");
+                    res.send("<script>alert('회원가입 실패. 다른 아이디를 이용하세요'); location.href='/';</script>");
                     return
                 }
 
                 if (result) {
                     console.dir(result)
-                    console.log('Inserted 성공')
-                    res.send("<script>alert('회원가입 완료.'); location.href='/login';</script>");
+                    res.send("<script>alert('회원가입 완료.'); location.href='/';</script>");
                 }
                 else {
                     console.log('Inserted 실패')
-                    res.send("<script>alert('회원가입 실패.'); location.href='/adduser';</script>");
+                    res.send("<script>alert('회원가입 실패.'); location.href='/';</script>");
 
                 }
             }
