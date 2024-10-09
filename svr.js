@@ -68,10 +68,9 @@ app.get('/register', (req, res) => {
     res.render('register');
 })
 
-app.get('/homepage', (req, res) => {
-    console.log(req.session.member)
-    res.render('homepage');
-})
+// app.get('/index', (req, res) => {
+//     res.render('index');
+// })
 
 app.get('/update', (req, res) => {
     pool.getConnection((err, conn) => {
@@ -151,12 +150,11 @@ app.get('/delete', (req, res) => {
 
 
 
-app.get('/board', (req, res) => {
+app.get('/index', (req, res) => {
     pool.getConnection((err, conn) => {
 
         if (err) {
             conn.release();
-            console.log('Mysql getConnection error. aborted');
             return
         }
 
@@ -176,7 +174,7 @@ app.get('/board', (req, res) => {
                 }
 
                 if (result) {
-                    res.render('board', {Lists: result});
+                    res.render('index', {questions: result});
                 }
                 else {
                     console.log('Inserted 실패')
@@ -357,7 +355,7 @@ app.post('/process/adduser', (req, res) => {
 
 
 
-app.get('/page', (req, res) => {
+app.get('/forum', (req, res) => {
     pool.getConnection((err, conn) => {
 
         if (err) {
@@ -380,7 +378,7 @@ app.get('/page', (req, res) => {
 
                 if (result) {
                     console.log(result);
-                    res.render('page', {pageinfo: result});
+                    res.render('forum_page', {question: result[0]});
                 }
                 else {
                     console.log('실패')
