@@ -44,9 +44,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우트 설정
 app.get('/', (req, res) => {
-  const initialPosts = questions.slice(0,6);
-  res.render('index.njk', {
-    questions:initialPosts,
+  res.render('index.html', {
+    questions,
     top_users,
     hot_questions
   });

@@ -24,11 +24,11 @@
       <!-- 게시글 목록 포함 -->
       <div class="col-md-8">
         {% for item in questions %}
-        <div class="question-card card" onclick="window.location.href='/forum/{{ item.id }}';" style = "cursor: pointer;">
+        <div class="question-card card" onclick="window.location.href='/forum?b_id={{item.b_id}}';" style = "cursor: pointer;">
           <div class="card-body">
-            <h5>{{ item.title or item.name }}</h5>
+            <h5>{{ item.b_title}}</h5>
             <div class="question-meta">
-              <span>{{ item.description or item.points }} {{ item.meta or '' }}</span>
+              <span>{{ item.b_description or item.b_points }} {{ item.b_meta }}</span>
             </div>
           </div>
         </div>

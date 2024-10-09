@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>{{ question.title }}</title>
+        <title>{{ question.b_title }}</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -29,16 +29,16 @@
             <div class="col-lg-8 col-md-10">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h2 class="text mb-4">{{ question.title }}</h2>
+                        <h2 class="text mb-4">{{ question.b_title }}</h2>
                         <hr class = 'forum-page-hr'/>
-                        <p class="card-text" id="question-description">{{ question.description }}</p>
+                        <p class="card-text" id="question-description">{{ question.b_description }}</p>
 
                         <!-- Hidden Textarea Section for Editing -->
                         <textarea id="edit-description" class="form-control" rows="4" style="display: none;"></textarea>
                     
                         <div class="question-details mt-4">
                             <h5>Details</h5>
-                            <p id="question-details">{{ question.details }}</p>
+                            <p id="question-details">{{ question.b_content }}</p>
 
                             <!-- Hidden Textarea Section for Editing Details -->
                             <textarea id="edit-details" class="form-control" rows="6" style="display: none;"></textarea>
