@@ -68,6 +68,20 @@ body {
     height: 4px;
   }
 
+  .mypage-icon{
+    display: block;
+    margin: 0 auto 20px;
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/mypage_icon.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border-radius: 50%;  /* 원형 모양 */
+    object-fit: cover;   /* 이미지 비율 유지 */
+  }
+
   /*nav.html 부분*/
   #loginModal .modal-dialog {
     max-width: 400px; /* 원하는 크기로 설정 */

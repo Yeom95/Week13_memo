@@ -44,11 +44,22 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우트 설정
 app.get('/', (req, res) => {
+  const initialPosts = questions.slice(0,6);
   res.render('index.njk', {
-    questions,
+    questions:initialPosts,
     top_users,
     hot_questions
   });
+});
+
+app.get('/load-more', (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const postsPerPage = 6;
+  const start = page * postsPerPage;
+  const end = start + postsPerPage;
+  const moreQuestions = questions.slice(start, end);
+
+  res.json(moreQuestions);
 });
 
 // 포럼 페이지 라우팅 (URL로부터 받은 ID를 이용하여 렌더링)
