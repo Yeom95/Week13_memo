@@ -24,6 +24,12 @@ const hot_questions = [
   { text: "How can I improve my academic writing skills?" }
 ];
 
+const users = [
+  { username: 'admin', password: 'password123' },
+  { username: 'user1', password: 'qwerty' },
+  { username: 'testuser', password: '123456' }
+];
+
 // Nunjucks 설정
 nunjucks.configure('views', {
   autoescape: true,
@@ -33,6 +39,8 @@ nunjucks.configure('views', {
 
 // 정적 파일 제공
 app.use(express.static(path.join(__dirname, 'public')));
+//POST에서 폼 데이터 파싱용
+app.use(express.urlencoded({ extended: true }));
 
 // 라우트 설정
 app.get('/', (req, res) => {
@@ -51,6 +59,19 @@ app.get('/forum/:id', (req, res) => {
   // 찾은 질문을 렌더링할 때 전달
   res.render('forum_page.njk', { question });
 });
+
+// 로그인 처리 라우트
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username && u.password === password);
+
+  if (user) {
+    res.send(`<h1>Welcome, ${user.username}!</h1>`); // 로그인 성공시 메시지 출력
+  } else {
+    res.send('<h1>Login failed. Invalid username or password.</h1>'); // 로그인 실패 시 메시지 출력
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

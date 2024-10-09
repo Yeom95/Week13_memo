@@ -20,38 +20,49 @@
     </head>
 
     <body>
-            {% include 'nav.html' %}
+        {% include 'nav.html' %}
 
-           <!-- Main Content Section -->
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-10">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="text mb-4">{{ question.title }}</h2>
-                            <p class="card-text">{{ question.description }}</p>
+        <!-- Main Content Section -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="text mb-4">{{ question.title }}</h2>
+                        <hr class = 'forum-page-hr'/>
+                        <p class="card-text" id="question-description">{{ question.description }}</p>
 
-                            <div class="question-details mt-4">
-                                <h5>Details</h5>
-                                <p>{{ question.details }}</p>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- Hidden Textarea Section for Editing -->
+                        <textarea id="edit-description" class="form-control" rows="4" style="display: none;"></textarea>
+                    
+                        <div class="question-details mt-4">
+                            <h5>Details</h5>
+                            <p id="question-details">{{ question.details }}</p>
 
-                    <div class="text-center mb-4">
-                        <button class="btn btn-primary">Reply</button>
-                        <button class="btn btn-secondary">Share</button>
-                    </div>
-
-                    <div class="mt-5">
-                        <h4>Related Questions</h4>
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action">How to improve my product shipping?</a>
-                            <a href="#" class="list-group-item list-group-item-action">What are the benefits of Shopify shipping solutions?</a>
-                            <a href="#" class="list-group-item list-group-item-action">Can I integrate third-party logistics?</a>
+                            <!-- Hidden Textarea Section for Editing Details -->
+                            <textarea id="edit-details" class="form-control" rows="6" style="display: none;"></textarea>
                         </div>
                     </div>
                 </div>
+
+                <div class="text-center mb-4">
+                    <!-- Edit Button -->
+                    <button class="btn btn-success" id="edit-button">Edit</button>
+                    <!-- Save Button (Initially hidden) -->
+                    <button class="btn btn-primary" id="save-button" style="display: none;">Save</button>
+                    <button class="btn btn-primary">Reply</button>
+                    <button class="btn btn-secondary">Share</button>
+                </div>
+
+                <div class="mt-5">
+                    <h4>Related Questions</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">How to improve my product shipping?</a>
+                        <a href="#" class="list-group-item list-group-item-action">What are the benefits of Shopify shipping solutions?</a>
+                        <a href="#" class="list-group-item list-group-item-action">Can I integrate third-party logistics?</a>
+                    </div>
+                </div>
             </div>
+        </div>
 
         <!-- Bootstrap JavaScript Libraries -->
         <script
@@ -65,5 +76,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="/js/edit_page.js"></script>
     </body>
 </html>

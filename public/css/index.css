@@ -50,6 +50,24 @@ body {
     color: #777;
   }
 
+  .top-users{
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  .hot-questions{
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  .forum-page-hr{
+    width: 100%;
+    background-color: black;
+    height: 4px;
+  }
+
   /*nav.html 부분*/
   #loginModal .modal-dialog {
     max-width: 400px; /* 원하는 크기로 설정 */
@@ -60,3 +78,21 @@ body {
     padding: 20px; /* 내용물 여백 */
     border-radius: 10px; /* 모서리 둥글게 */
   }
+
+  /* signupModal의 모달 디자인을 조정 */
+#signupModal .modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%; /* 화면 전체 높이를 기준으로 중앙 배치 */
+}
+
+#signupModal .modal-content {
+  max-width: 500px; /* 모달 너비를 제한 */
+  width: 100%;      /* 모달이 최대 너비를 차지 */
+}
+
+#signupModal .modal-body {
+  max-height: 110vh; /* 모달의 최대 높이를 화면의 80%로 제한 */
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤을 활성화 */
+}
