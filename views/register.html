@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
     <title>Post a New Question</title>
@@ -23,14 +23,15 @@
         <div class="col-lg-8 col-md-10">
             <div class="card mb-4" id = "forum-page-card">
                 <div class="card-body">
-                    <!-- Title Section -->
-                    <input type="text" id="edit-title" name="b_title" class="form-control mb-4" placeholder="Enter your title" required />
+  
 
                     <!--<hr class='forum-page-hr'/>
                     <textarea id="edit-description" name="b_description" class="form-control mb-4" rows="3" placeholder="Enter a short description" required></textarea>-->
 
                     <!-- Form for submitting new post -->
-                    <form method="POST" action="/process/post">
+                    <form method="POST" action="/process/register">
+                            <!-- Title Section -->
+                        <input type="text" id="edit-title" name="b_title" class="form-control mb-4" placeholder="Enter your title" required />
                         <!-- Details Section -->
                         <div class="mb-3">
                             <label for="edit-details" class="form-label">Details</label>

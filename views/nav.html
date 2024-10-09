@@ -7,7 +7,11 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav"> 
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" id="write-post" href="/update">Post</a></li>
+        {% if id %}
+          <li class="nav-item"><a class="nav-link" id="write-post" href="/register">Post</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" id="write-post">Post</a></li>
+        {% endif %}
         <li class="nav-item"><a class="nav-link" href="#">Current users</a></li>
       </ul>
       <form class="d-flex search-bar">

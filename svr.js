@@ -104,20 +104,7 @@ app.get('/register', (req, res) => {
     res.render('register');
 })
 
-// app.get('/index', (req, res) => {
-//     res.render('index');
-// })
-
 app.get('/update', (req, res) => {
-    //이거 수정좀
-    if (!req.session.userId) {  // req.session.userId가 없으면 비로그인 상태
-        return res.send(`
-            <script>
-                alert('로그인이 필요합니다.');
-                window.location.href = '/';
-            </script>
-        `);
-    }
 
     pool.getConnection((err, conn) => {
 
@@ -229,7 +216,7 @@ app.post('/process/register', (req, res) => {
                 }
 
                 if (result) {
-                    res.send("<script>alert('게시 성공!'); location.href='/board';</script>");
+                    res.send("<script>alert('게시 성공!'); location.href='/';</script>");
 
                     return
                 }
