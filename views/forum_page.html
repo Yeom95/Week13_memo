@@ -86,21 +86,22 @@
 
                 <div class="col-md-8">
                     {% for item in question %}
-                    <!--<div class="question-card card" onclick="window.location.href='/forum?c_id={{item.c_id}}';" style = "cursor: pointer;">-->
-                    <div class="card-body">
-                    <h5>{{ item.c_content}}</h5>
+                    <div class="question-card card">
+                        <div class="card-body">
+                        <h5>{{ item.c_content}}</h5>
+                        </div>
+                        <div class="text-center mb-4 mt-4">
+                            <!-- Edit Button -->
+                            {% if id %}
+                            <button type="button" class="btn btn-success" id="edit-button">Edit</button>
+                            {% else %}
+                            <button type="button" class="btn btn-success">Edit</button>
+                            {% endif %}
+                            <!-- Save Button (Initially hidden) -->
+                            <button type="submit" class="btn btn-primary" id="save-button" style="display: none;">Save</button>
+                        </div>
+                        {% endfor %}
                     </div>
-                      <div class="text-center mb-4 mt-4">
-                        <!-- Edit Button -->
-                        {% if id %}
-                        <button type="button" class="btn btn-success" id="edit-button">Edit</button>
-                        {% else %}
-                        <button type="button" class="btn btn-success">Edit</button>
-                        {% endif %}
-                        <!-- Save Button (Initially hidden) -->
-                        <button type="submit" class="btn btn-primary" id="save-button" style="display: none;">Save</button>
-                    </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
