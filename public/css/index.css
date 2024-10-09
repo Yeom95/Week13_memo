@@ -14,15 +14,15 @@ body {
     border-bottom: 2px solid white; /* 밑줄 추가 */
   }
   .navbar-custom .navbar-nav {
-    margin-left: 50px; /* 메뉴 아이템 왼쪽으로 여백 */
+    margin-left: 20px; /* 메뉴 아이템 왼쪽으로 여백 */
   }
   .navbar-custom .btn {
     color: white;
     border-color: white;
   }
-  .search-bar {
+  .search-bar{
     width: 300px; /* 검색창 너비 조정 */
-    margin-right: 20px;
+    margin-right: 60px;
   }
   .navbar-brand {
     font-size: 1.5rem; /* 포럼 제목 크기 키움 */
@@ -68,18 +68,22 @@ body {
     height: 4px;
   }
 
-  .mypage-icon{
+  .user-icon{
     display: block;
-    margin: 0 auto 20px;
-    width: 40px;
-    height: 40px;
+    position: absolute; /* 절대 위치로 설정하여 원하는 곳에 배치 */
+    top: 50%; /* 세로 중앙 정렬 */
+    right: 20px; /* 오른쪽에서 약간 떨어지도록 설정 */
+    transform: translateY(-50%); /* 수직 중앙 정렬 */
+    width: 40px;  /* search바의 높이와 동일하게 설정 */
+    height: 40px; /* search바의 높이와 동일하게 설정 */
     background-image: url('../images/mypage_icon.png');
-    background-size: 80%;
+    background-size: 80%; /* 아이콘 크기 */
     background-repeat: no-repeat;
     background-position: center;
-    background-color: transparent;
-    border-radius: 50%;  /* 원형 모양 */
+    background-color: rgba(255, 255, 255, 0.3); /* 아이콘 배경을 약간 더 보이도록 설정 */
+    border-radius: 50%;  /* 원형 모양 유지 */
     object-fit: cover;   /* 이미지 비율 유지 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가로 더 눈에 띄게 */
   }
 
   /*nav.html 부분*/
@@ -91,6 +95,12 @@ body {
   #loginModal .modal-content {
     padding: 20px; /* 내용물 여백 */
     border-radius: 10px; /* 모서리 둥글게 */
+  }
+
+  #forum-page-card{
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
 
   /* signupModal의 모달 디자인을 조정 */
