@@ -84,7 +84,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90%; /* 화면 전체 높이를 기준으로 중앙 배치 */
+  height:90%; /* 화면 전체 높이를 기준으로 중앙 배치 */
 }
 
 #signupModal .modal-content {

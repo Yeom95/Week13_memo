@@ -37,6 +37,11 @@
                         const loginModalInstance = new bootstrap.Modal(document.getElementById('loginModal'));
                         loginModalInstance.show();
 
+                        const signupModalInstance = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+                        if(signupModalInstance){
+                          loginModalInstance.hide();
+                        }
+
                         // 이제 로그인 모달이 로드된 후, signupBtn을 찾음
                         const signupButton = document.querySelector('#signupBtn');  // 로그인 모달에 있는 signupBtn을 찾음
                         
@@ -50,6 +55,29 @@
                               .then(html => {
                                 document.querySelector('#signupModal .modal-body').innerHTML = html;
                                 new bootstrap.Modal(document.getElementById('signupModal')).show();
+
+                                // 로그인 모달 숨기기
+                                $('#loginModal').modal('hide');
+
+                                const backLink = document.getElementById('backLink');
+
+                                backLink.addEventListener('click', function(event) {
+                                  event.preventDefault();
+
+                                  // 회원가입 모달 숨기기
+                                  const signupModalInstance = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+                                  if (signupModalInstance) {
+                                    signupModalInstance.hide();
+                                  }
+
+                                  // 로그인 모달 다시 표시하기
+                                  const loginModalInstance = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                                  if(!loginModalInstance){
+                                    loginModalInstance = new bootstrap.Modal(document.getElementById('loginModal'));
+                                  }
+                                  loginModalInstance.show();
+                                  
+                                });
                               })
                               .catch(err => console.warn('Failed to load signup page:', err));
                           });
@@ -61,6 +89,18 @@
               </script>
             </div>
           </div>
+        </div>
+      </div>
+      <!--End of Modal Body-->
+
+      <!--Signup Modal Structure-->
+      <div class = "modal fade" id = "signupModal" tabindex = "-1" aria-labelledby = "signupModalLabel" aria-hidden = "true">
+        <div class = "modal-dialog">
+            <div class = "modal-content">
+                <div class = "modal-body">
+                    <!-- Modal Body-->
+                </div>
+            </div>
         </div>
       </div>
       <!--End of Modal Body-->

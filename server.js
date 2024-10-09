@@ -72,6 +72,22 @@ app.post('/login', (req, res) => {
   }
 });
 
+// 회원가입 처리 라우트
+app.post('/signup', (req, res) => {
+  const { username, password } = req.body;
+
+  // 사용자 중복 확인
+  const existingUser = users.find(u => u.username === username && u.password === password);
+
+  if (existingUser) {
+    res.send('<h1>Username or email already exists. Please choose another one.</h1>');
+  } else {
+    // 새로운 사용자 추가
+    users.push({ username, password });
+    res.send(`<h1>Welcome, ${username}! You have successfully signed up.</h1>`);
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
