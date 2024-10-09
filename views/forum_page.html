@@ -30,21 +30,21 @@
                 <div class="card mb-4" id = "forum-page-card">
                     <div class="card-body">
                         <!-- Title Section -->
-                        <h2 class="text mb-4" id="question-title">{{ question.b_title }}</h2>
-                        <input type="text" id="edit-title" name="b_title" class="form-control mb-4" value="{{ question.b_title }}" style="display: none;" required />
+                        
 
                         <hr class='forum-page-hr'/>
-                        <p class="card-text" id="question-description">{{ question.b_description }}</p>
 
                         <!-- Form for submitting edited content -->
-                        <form method="POST" action="/process/update">
+                        <form method="POST" action="/process/update?b_id={{question[0].b_id}}">
                             <input type="hidden" name="b_id" value="{{ question.b_id }}"/>
-
+                            
+                            <h2 class="text mb-4" id="question-title">{{ question[0].b_title }}</h2>
+                            <input type="text" id="edit-title" name="b_title" class="form-control mb-4" value="{{ question[0].b_title }}" style="display: none;" required />
                             <!-- Details Section -->
                             <div class="mb-3">
                                 <label for="edit-details" class="form-label">Details</label>
-                                <p id="question-details">{{ question.b_content }}</p>
-                                <textarea id="edit-details" name="b_content" class="form-control" rows="6" style="display: none;" required>{{ question.b_content }}</textarea>
+                                <p id="question-details">{{ question[0].b_content }}</p>
+                                <textarea id="edit-details" name="b_content" class="form-control" rows="6" style="display: none;" required>{{ question[0].b_content }}</textarea>
                             </div>
 
                             <div class="text-center mb-4">
@@ -66,13 +66,14 @@
                 {% if id %}
                 <div class="card mb-4" id = "forum-page-card">
                     <div class="card-body">
-                        <!-- Title Section -->
-                        <textarea id="edit-details" name="b_content" class="form-control" rows="3" placeholder="Enter the content of your post" required></textarea>
+
                         <!-- Form for submitting edited content -->
-                        <form method="POST" action="/process/update">
+                        <form method="POST" action="/process/register_comment?b_id={{question[0].b_id}}">
+                                                    <!-- Title Section -->
+                            <textarea id="edit-details" name="c_content" class="form-control" rows="3" placeholder="Enter the content of your post" required></textarea>
                             <div class="text-center mb-4 mt-4">
                                 <!-- Edit Button -->
-                                <button type="button" class="btn btn-success" id="edit-button">Edit</button>
+                                <button class="btn btn-success" id="edit-button">Edit</button>
                                 <!-- Save Button (Initially hidden) -->
                                 <button type="submit" class="btn btn-primary" id="save-button" style="display: none;">Save</button>
                                 <button class="btn btn-primary">Reply</button>
@@ -84,7 +85,7 @@
                 {% endif %}
 
                 <div class="col-md-8">
-                    {% for item in questions %}
+                    {% for item in question %}
                     <!--<div class="question-card card" onclick="window.location.href='/forum?c_id={{item.c_id}}';" style = "cursor: pointer;">-->
                     <div class="card-body">
                     <h5>{{ item.c_content}}</h5>

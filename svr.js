@@ -41,8 +41,8 @@ app.use((req, res, next) => {
     res.locals.name = "";
 
     if(req.session.member) {
-        res.locals.id = req.session.member.u_id
-        res.locals.name = req.session.member.u_name
+        res.locals.id = req.session.member.id
+        res.locals.name = req.session.member.name
     }
     next()
 })
@@ -95,6 +95,7 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login');
 })
+
 
 app.get('/adduser', (req, res) => {
     res.render('adduser');
@@ -252,7 +253,7 @@ app.post('/process/login', (req, res) => {
             return
         }
 
-        const exec = conn.query('select `u_id`, `u_nickname` from `users` where `u_id`=? and `u_password`= SHA2(?,256)',
+        const exec = conn.query('select `id`, `name` from `users` where `id`=? and `password`= SHA2(?,256)',
             [paramId, paramPassword],
             (err, rows) => {
                 conn.release();
@@ -309,7 +310,7 @@ app.post('/signup', (req, res) => {
 
         console.log('데이터베이스 연결 끈 얻었음');
 
-        const exec = conn.query('insert into users (u_id, u_password) values (?, SHA2(?,256))',
+        const exec = conn.query('insert into users (id, password) values (?, SHA2(?,256))',
             [paramId, paramPassword],
             (err, result) => {
                 conn.release();
@@ -362,7 +363,7 @@ app.get('/forum', (req, res) => {
 
                 if (result) {
                     console.log(result);
-                    res.render('forum_page', {question: result[0]});
+                    res.render('forum_page', {question: result});
                 }
                 else {
                     console.log('실패')
@@ -400,7 +401,7 @@ app.post('/process/register_comment', (req, res) => {
                 }
 
                 if (result) {
-                    res.send(`<script>alert('댓글 입력 완료!'); location.href='/page?b_id=${b_id}';</script>`);
+                    res.send(`<script>alert('댓글 입력 완료!'); location.href='/forum?b_id=${b_id}';</script>`);
                     return
                 }
                 else {
@@ -447,6 +448,7 @@ app.post('/process/update', (req, res) => {
 
     const paramTitle = req.body.b_title;
     const paramContent = req.body.b_content;
+    console.log(req.query.b_id)
     var b_id = req.query.b_id;
 
     pool.getConnection((err, conn) => {
@@ -469,7 +471,8 @@ app.post('/process/update', (req, res) => {
                 }
 
                 if (result) {
-                    res.send(`<script>alert('게시물 수정 완료!'); location.href='/page?b_id=${b_id}';</script>`);
+                    console.log(b_id)
+                    res.send(`<script>alert('게시물 수정 완료!'); location.href='/forum?b_id=${b_id}';</script>`);
                     return
                 }
                 else {
