@@ -41,8 +41,8 @@ app.use((req, res, next) => {
     res.locals.name = "";
 
     if(req.session.member) {
-        res.locals.id = req.session.member.id
-        res.locals.name = req.session.member.name
+        res.locals.id = req.session.member.u_id
+        res.locals.name = req.session.member.u_name
     }
     next()
 })
@@ -252,7 +252,7 @@ app.post('/process/login', (req, res) => {
             return
         }
 
-        const exec = conn.query('select `id`, `name` from `users` where `id`=? and `password`= SHA2(?,256)',
+        const exec = conn.query('select `u_id`, `u_nickname` from `users` where `u_id`=? and `u_password`= SHA2(?,256)',
             [paramId, paramPassword],
             (err, rows) => {
                 conn.release();
@@ -309,7 +309,7 @@ app.post('/signup', (req, res) => {
 
         console.log('데이터베이스 연결 끈 얻었음');
 
-        const exec = conn.query('insert into users (id, password) values (?, SHA2(?,256))',
+        const exec = conn.query('insert into users (u_id, u_password) values (?, SHA2(?,256))',
             [paramId, paramPassword],
             (err, result) => {
                 conn.release();

@@ -49,6 +49,29 @@
 
                             <div class="text-center mb-4">
                                 <!-- Edit Button -->
+                                {% if id %}
+                                <button type="button" class="btn btn-success" id="edit-button">Edit</button>
+                                {% else %}
+                                <button type="button" class="btn btn-success">Edit</button>
+                                {% endif %}
+                                <!-- Save Button (Initially hidden) -->
+                                <button type="submit" class="btn btn-primary" id="save-button" style="display: none;">Save</button>
+                                <button class="btn btn-primary">Reply</button>
+                                <button class="btn btn-secondary">Share</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                {% if id %}
+                <div class="card mb-4" id = "forum-page-card">
+                    <div class="card-body">
+                        <!-- Title Section -->
+                        <textarea id="edit-details" name="b_content" class="form-control" rows="3" placeholder="Enter the content of your post" required></textarea>
+                        <!-- Form for submitting edited content -->
+                        <form method="POST" action="/process/update">
+                            <div class="text-center mb-4 mt-4">
+                                <!-- Edit Button -->
                                 <button type="button" class="btn btn-success" id="edit-button">Edit</button>
                                 <!-- Save Button (Initially hidden) -->
                                 <button type="submit" class="btn btn-primary" id="save-button" style="display: none;">Save</button>
@@ -58,14 +81,25 @@
                         </form>
                     </div>
                 </div>
+                {% endif %}
 
-                <div class="mt-5">
-                    <h4>Related Questions</h4>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">How to improve my product shipping?</a>
-                        <a href="#" class="list-group-item list-group-item-action">What are the benefits of Shopify shipping solutions?</a>
-                        <a href="#" class="list-group-item list-group-item-action">Can I integrate third-party logistics?</a>
+                <div class="col-md-8">
+                    {% for item in questions %}
+                    <!--<div class="question-card card" onclick="window.location.href='/forum?c_id={{item.c_id}}';" style = "cursor: pointer;">-->
+                    <div class="card-body">
+                    <h5>{{ item.c_content}}</h5>
                     </div>
+                      <div class="text-center mb-4 mt-4">
+                        <!-- Edit Button -->
+                        {% if id %}
+                        <button type="button" class="btn btn-success" id="edit-button">Edit</button>
+                        {% else %}
+                        <button type="button" class="btn btn-success">Edit</button>
+                        {% endif %}
+                        <!-- Save Button (Initially hidden) -->
+                        <button type="submit" class="btn btn-primary" id="save-button" style="display: none;">Save</button>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -27,6 +27,8 @@
         <div class="question-card card" onclick="window.location.href='/forum?b_id={{item.b_id}}';" style = "cursor: pointer;">
           <div class="card-body">
             <h5>{{ item.b_title}}</h5>
+            <h6>{{item.b_u_id}}</h6>
+            <h6>{{item.b_upload_date}}</h6>
             <div class="question-meta">
               <span>{{ item.b_description or item.b_points }} {{ item.b_meta }}</span>
             </div>
@@ -46,6 +48,7 @@
           <div class="top-users card mb-4">
             <div class="card-body">
               <h5 class="card-title">Users of the Week</h5>
+              <hr class='forum-page-hr'/>
               <ul class="list-group list-group-flush">
                 {% for item in top_users %}
                 <li class="list-group-item user-item">
@@ -56,6 +59,16 @@
                   <span>{{ item.description or item.points }} {{ item.meta or '' }}</span>
                 </li>
                 {% endfor %}
+
+                <div class="user-info">
+                  <span>Today : 12</span>
+                </div>
+                <div class="user-info">
+                  <span>User : 3</span>
+                </div>
+                <div>
+                  <span>Guests : 8</span>
+                </div>
             </div>
           </div>
         
