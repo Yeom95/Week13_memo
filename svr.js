@@ -109,6 +109,16 @@ app.get('/register', (req, res) => {
 // })
 
 app.get('/update', (req, res) => {
+    //이거 수정좀
+    if (!req.session.userId) {  // req.session.userId가 없으면 비로그인 상태
+        return res.send(`
+            <script>
+                alert('로그인이 필요합니다.');
+                window.location.href = '/';
+            </script>
+        `);
+    }
+
     pool.getConnection((err, conn) => {
 
         if (err) {

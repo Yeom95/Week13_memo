@@ -1,42 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.getElementById('edit-button');
     const saveButton = document.getElementById('save-button');
-    const description = document.getElementById('question-description');
+
+    // Elements for editing title and content
+    const title = document.getElementById('question-title');
+    const editTitle = document.getElementById('edit-title');
     const details = document.getElementById('question-details');
-    const editDescription = document.getElementById('edit-description');
     const editDetails = document.getElementById('edit-details');
-    const updateForm = document.getElementById('update-form');
-    const updatedDescription = document.getElementById('updated-description');
-    const updatedDetails = document.getElementById('updated-details');
 
-    // Edit 버튼 클릭 시 텍스트 영역 표시
+    // Edit 버튼 클릭 시
     editButton.addEventListener('click', () => {
-        // 숨겨진 textarea를 표시하고 기존 내용을 채워넣음
-        //editDescription.style.display = 'block';
+        // 제목 편집
+        title.style.display = 'none'; // 기존 제목 숨김
+        editTitle.style.display = 'block'; // 제목을 입력할 input 표시
+
+        // 내용 편집
         details.style.display = 'none'; // 기존 내용을 숨김
-        editDetails.style.display = 'block';
-        saveButton.style.display = 'inline-block';
-        editButton.style.display = 'none';
+        editDetails.style.display = 'block'; // 편집 textarea를 표시
 
-        // 현재 내용을 textarea에 복사
-        //editDescription.value = description.textContent.trim();
-        editDetails.value = details.textContent.trim();
+        // 버튼 변경
+        saveButton.style.display = 'inline-block'; // Save 버튼 표시
+        editButton.style.display = 'none'; // Edit 버튼 숨김
     });
 
-    // Save 버튼 클릭 시 내용 전송
-    saveButton.addEventListener('click', () => {
-        // 필수 값이 입력되지 않았는지 체크
-        //editDescription.value.trim() === '' || 
-        if (editDetails.value.trim() === '') {
-            alert('Title과 Content는 필수 입력 항목입니다.');
-            return; // 폼을 제출하지 않음
-        }
-
-        // textarea의 값을 form hidden input으로 복사
-        //updatedDescription.value = editDescription.value;
-        updatedDetails.value = editDetails.value;
-
-        // Form을 submit해서 POST 요청
-        updateForm.submit();
-    });
+    // Save 버튼은 form의 submit으로 자동 처리되므로 추가 JS는 필요 없음
 });
