@@ -19,9 +19,9 @@ const top_users = [
 ];
 
 const hot_questions = [
-  { text: "What's the appropriate word to say you're dazzled by a nice smell?" },
-  { text: "How to structure a good research paper?" },
-  { text: "How can I improve my academic writing skills?" }
+  { text: 'What\'s the appropriate word to say you\'re dazzled by a nice smell?' },
+  { text: 'How to structure a good research paper?' },
+  { text: 'How can I improve my academic writing skills?' }
 ];
 
 const users = [
